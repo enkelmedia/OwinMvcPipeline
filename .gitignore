@@ -1,0 +1,19 @@
+# git ignore file
+
+_ReSharper*/
+bin/
+obj/
+*/bin/
+*/obj/
+*/*/bin/
+*/*/obj/ 
+*.suo
+*.sln.DotSettings.user
+*.DS_Store
+Thumbs.db
+*.user
+*.vs
+/Packages/
+
+
+*/node_modules/*
