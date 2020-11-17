@@ -1,9 +1,43 @@
 ﻿# Owin MVC Startup and Request Pipeline
 
+Startup:
+* WebActivator::PreStart ---- NoHttpContext  
+* Global.asax::Application_Start ---- HttpContextNoRequest 
+* DebugHttpModule::Init ---- HttpContextWithRequest (/)  
+* DebugHttpModuleNumber2::Init ---- HttpContextWithRequest (/)  
+* OwinStartup::Configuration ---- HttpContextWithRequest (/)  
+* WebActivator::PostStart ---- HttpContextWithRequest (/)  
+* DebugHttpModule::Init ---- HttpContextNoRequest  
+* DebugHttpModuleNumber2::Init ---- HttpContextNoRequest  
+
+First request:
+* DebugHttpModule::OnBeginRequest ---- HttpContextWithRequest (/Home/Index)  
+* DebugHttpModuleNumber2::OnBeginRequest ---- HttpContextWithRequest (/Home/Index)  
+* Global.asax::Application_BeginRequest ---- HttpContextWithRequest (/Home/Index)  
+* OwinMiddleware:: Incoming ---- HttpContextWithRequest (/Home/Index)  
+* HomeController::Ctor ---- HttpContextWithRequest (/Home/Index)  
+* HomeController::Index ---- HttpContextWithRequest (/Home/Index)  
+* DebugHttpModule::OnLogRequest ---- HttpContextWithRequest (/Home/Index)  
+* DebugHttpModuleNumber2::OnLogRequest ---- HttpContextWithRequest (/Home/Index)  
+* DebugHttpModule::OnEndRequest ---- HttpContextWithRequest (/Home/Index)  
+* DebugHttpModuleNumber2::OnEndRequest ---- HttpContextWithRequest (/Home/Index)  
+* OwinMiddleware:: Outgoing ---- HttpContextWithRequest (/Home/Index)  
+* Global.asax::Application_EndRequest ---- HttpContextWithRequest (/Home/Index)  
 
 
-
-
+Request
+* DebugHttpModule::OnBeginRequest ---- HttpContextWithRequest (/Home/Index)  
+* DebugHttpModuleNumber2::OnBeginRequest ---- HttpContextWithRequest (/Home/Index)  
+* Global.asax::Application_BeginRequest ---- HttpContextWithRequest (/Home/Index)  
+* OwinMiddleware:: Incoming ---- HttpContextWithRequest (/Home/Index)  
+* HomeController::Ctor ---- HttpContextWithRequest (/Home/Index)  
+* HomeController::Index ---- HttpContextWithRequest (/Home/Index)  
+* DebugHttpModule::OnLogRequest ---- HttpContextWithRequest (/Home/Index)  
+* DebugHttpModuleNumber2::OnLogRequest ---- HttpContextWithRequest (/Home/Index)  
+* DebugHttpModule::OnEndRequest ---- HttpContextWithRequest (/Home/Index)  
+* DebugHttpModuleNumber2::OnEndRequest ---- HttpContextWithRequest (/Home/Index)  
+* OwinMiddleware:: Outgoing ---- HttpContextWithRequest (/Home/Index)  
+* Global.asax::Application_EndRequest ---- HttpContextWithRequest (/Home/Index)  
 
 
 

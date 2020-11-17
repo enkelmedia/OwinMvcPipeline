@@ -9,7 +9,7 @@ namespace OwinMvcPipeline
     {
         public static void Write(string message)
         {
-            Debug.WriteLine($"---------- {message} ---- {HttpContextStatus.Status}  ------------------");
+            Debug.WriteLine($"---------- {message} ---- {HttpContextStatus.Status}  ");
         }
     }
 
